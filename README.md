@@ -1,6 +1,5 @@
 # Morph
-[![Release](https://jitpack.io/v/MankIndX/Morph.svg)]
-(https://github.com/MankIndX/Morph)   <a href="http://www.methodscount.com/?lib=com.github.MankIndX%3AMorph%3A0.2.1"><img src="https://img.shields.io/badge/Methods and size-27 | 4 KB-e91e63.svg"/></a>
+[![](https://jitpack.io/v/MankIndX/Morph.svg)](https://jitpack.io/#MankIndX/Morph)  <a href="http://www.methodscount.com/?lib=com.github.MankIndX%3AMorph%3A0.2.1"><img src="https://img.shields.io/badge/Methods and size-27 | 4 KB-e91e63.svg"/></a>
 
 基于七牛图片处理 [api](https://developer.qiniu.com/dora/api/1270/the-advanced-treatment-of-images-imagemogr2) 生成所需图片 URIs
 

@@ -12,6 +12,7 @@ public final class Morph {
     private static final String FILTER_STRIP = "strip";
     private static final String FILTER_BLUR = "blur";
     private static final String FILTER_SHARPEN = "sharpen";
+    private static final String FILTER_QUALITY = "quality";
 
     private String imageUrl;
     private boolean autoOrient;
@@ -22,6 +23,7 @@ public final class Morph {
     private int blurRadius;
     private int blurSigma;
     private boolean sharpen;
+    private int quality;
     private ImageFormat imageFormat = ImageFormat.WEBP;
 
     public static Morph buildImage(String imageUrl) {
@@ -71,6 +73,17 @@ public final class Morph {
     public Morph imageFormat(ImageFormat imageFormat) {
         this.imageFormat = imageFormat;
         return this;
+    }
+
+    /**
+     * 图片质量，仅支持 jpg 
+     */
+    public Morph quality(int quality) {
+    	if (quality < 1 || quality > 100) {
+    		throw new IllegalArgumentException("quality must be within [1, 100]");
+    	}
+    	this.quality = quality;
+    	return this;
     }
 
     /**
@@ -137,6 +150,11 @@ public final class Morph {
             builder.append(FILTER_BLUR).append("/");
             builder.append(blurRadius).append("x").append(blurSigma);
             builder.append("/");
+        }
+
+        if (imageFormat == ImageFormat.JPEG && quality > 0) {
+        	builder.append(FILTER_QUALITY).append(quality);
+        	builder.append("/");
         }
 
         if (sharpen) {

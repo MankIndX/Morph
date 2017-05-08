@@ -30,6 +30,7 @@ String url = Morph.buildImage(imageUrl)
         .autoOrient()
         .resize(width, height)
         .imageFormat(ImageFormat.WEBP)
+        .quality(80) // quality 仅支持 jpg
         .blur(radius, sigma)
         .sharp()
         .toUrl();

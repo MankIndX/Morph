@@ -68,6 +68,7 @@ public final class Morph {
 
     /**
      * 图片格式，默认为 WEBP
+     *
      * @see ImageFormat
      */
     public Morph imageFormat(ImageFormat imageFormat) {
@@ -76,14 +77,14 @@ public final class Morph {
     }
 
     /**
-     * 图片质量，仅支持 jpg 
+     * 图片质量，仅支持 jpg
      */
     public Morph quality(int quality) {
-    	if (quality < 1 || quality > 100) {
-    		throw new IllegalArgumentException("quality must be within [1, 100]");
-    	}
-    	this.quality = quality;
-    	return this;
+        if (quality < 1 || quality > 100) {
+            throw new IllegalArgumentException("quality must be within [1, 100]");
+        }
+        this.quality = quality;
+        return this;
     }
 
     /**
@@ -96,6 +97,7 @@ public final class Morph {
 
     /**
      * 高斯模糊，图片格式为gif时，不支持该参数。
+     *
      * @param radius 模糊半径，范围1-50
      * @param sigma 正太分布的标准差，必须大于0
      */
@@ -153,8 +155,8 @@ public final class Morph {
         }
 
         if (imageFormat == ImageFormat.JPEG && quality > 0) {
-        	builder.append(FILTER_QUALITY).append(quality);
-        	builder.append("/");
+            builder.append(FILTER_QUALITY).append(quality);
+            builder.append("/");
         }
 
         if (sharpen) {
@@ -167,16 +169,16 @@ public final class Morph {
         builder.append(FILTER_THUMBNAIL).append("/");
 
         if (resizeWidth == 0) {
-            // 指定图片高度，宽度等比缩放
-            builder.append("x").append(resizeHeight);
+            // 指定图片高度，宽度等比缩小
+            builder.append("9999x").append(resizeHeight);
         } else if (resizeHeight == 0) {
-            // 指定图片宽度，高度等比缩放
-            builder.append(resizeWidth).append("x");
+            // 指定图片宽度，高度等比缩小
+            builder.append(resizeWidth).append("x9999");
         } else {
-            // 等比缩放，比例值为宽缩放比和高缩放比的较小值
+            // 等比缩小，比例值为宽缩放比和高缩放比的较小值
             builder.append(resizeWidth).append("x").append(resizeHeight);
         }
-        builder.append("/");
+        builder.append(">/");
     }
 
     /** Image formats supported by Qiniu. */
